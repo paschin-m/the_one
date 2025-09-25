@@ -12,5 +12,7 @@ public class App {
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
+        Node n = new Node();
+        System.out.println(n.toString());
     }
 }
