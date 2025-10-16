@@ -1,46 +1,46 @@
 package org.example;
 
+import java.util.Locale;
+
 public class Node {
-    public String nodeName;
-    protected Integer nodeValue;
-    public Node prewNode;
-    public Node nextNode;
+    final static String[]  protocols={"http:","ftp:","https:"};
+    public String protocolName;
+    public Integer port;
+    public String hostName;
+    public String domainZone;
+    public String url;
+    public String params;
+    public String uncors;
 
-    public Node() {
-        this.nodeValue=0;
-        this.nodeName="Какой-то имя для узла выраловрадывра";
-    }
-    public Node getNextNode() {
-        return nextNode;
-    }
+    public Node(String adrResource) {
+        this.port = 443;
+        String lowerCase = adrResource.toLowerCase(Locale.ROOT);
+        String[] nodes = lowerCase.split(".");
 
-    public void setNextNode(Node nextNode) {
-        this.nextNode = nextNode;
-    }
-
-    public Node getPrewNode() {
-        return prewNode;
-    }
-
-    public void setPrewNode(Node prewNode) {
-        this.prewNode = prewNode;
-    }
-    public Integer getNodeValue() {
-        return nodeValue;
+        if (adrResource.length() > 14) {
+            //DEBUG INFO
+            System.out.println("[DEBUG]-all is OK! ");
+            int fl = defineProtocol(lowerCase);
+            //DEBUG INFO
+            if(fl>7) {
+                System.out.println("Error of url in defining proto!");
+                System.out.println(fl);
+            }
+        }
     }
 
-    public String getNodeName() {
-        return nodeName;
+    public static int defineProtocol(String tmp){
+        int flag=0;
+        for (String argProto:protocols){
+            flag=tmp.indexOf(argProto);
+        }
+        //DEBUG INFO
+        System.out.println(flag);
+        return flag;
     }
 
-    public void setNodeName(String nodeName) {
-        this.nodeName = nodeName;
+    public int getPort(String tmp){
+        return 22;
     }
 
-    public void setNodeValue(Integer nodeValue) {
-        this.nodeValue = nodeValue;
-    }
-     public String toString(){
-        return this.getNodeName();
-     }
 }

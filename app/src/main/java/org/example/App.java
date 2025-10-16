@@ -5,14 +5,19 @@ package org.example;
 
 import com.gradle.CustomLib;
 
+import java.io.IOException;
+
 public class App {
     public String getGreeting() {
-        return "CustomLib indefer is :"+ CustomLib.identifier;
+        return "CustomLib id is :"+ CustomLib.identifier;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println(new App().getGreeting());
-        Node n = new Node();
-        System.out.println(n.toString());
+        //Node n = new Node("https://www.yandex.ru");
+        String prName= Proto.setURLcontext("https://www.yandex.ru");
+        System.out.println("DEBUG Function!=====RETURN");
+        System.out.println(prName);
+        System.out.println("DEBUG Function!=====RETURN");
     }
 }
